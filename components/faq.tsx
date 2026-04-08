@@ -8,7 +8,7 @@ export function FAQ() {
   const faqs = [
     {
       question: 'What if I don&apos;t have 1 hour of work every single day?',
-      answer: 'Hours roll over! Scout plan rolls 7 days. Squad rolls 14 days. CTO rolls 30 days. Bank unused hours for bigger sprints whenever you need them.',
+      answer: 'Hours roll over! Scout plan rolls over 7 days. Squad plan rolls over 14 days. CTO plan rolls over 30 days. Bank unused hours for bigger sprints whenever you need them.',
     },
     {
       question: 'What tech stacks do you work with?',
@@ -40,7 +40,7 @@ export function FAQ() {
     },
     {
       question: 'How do I book a consultation?',
-      answer: 'Scroll to the "Book Your Consultation" section, fill out your details, select your preferred date and time, and we&apos;ll send you a confirmation email. You can also WhatsApp us at https://wa.link/oktez7.',
+      answer: 'Scroll to the "Book Your Consultation" section, fill out your details, select your preferred date and time, and we&apos;ll send you a confirmation email. You can also message us on WhatsApp at https://wa.link/oktez7.',
     },
     {
       question: 'What payment methods do you accept?',
