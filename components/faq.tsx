@@ -19,8 +19,8 @@ export function FAQ() {
       answer: 'We invoice daily at midnight UTC with a card on file. Pause or cancel anytime from your dashboard. No contracts or hidden fees. You&apos;re never locked in.',
     },
     {
-      question: 'What&apos;s the catch with the 40% discount?',
-      answer: 'No catch. We want you to experience daily velocity risk-free. Discount applies to the first 7 days. Cancel before day 8 and pay nothing more. Stay after day 8 and standard rates apply. The discount is reflected at checkout.',
+      question: 'What&apos;s the catch with the discount?',
+      answer: 'No catch. We want you to experience daily velocity risk-free. The discount applies to your first week. You can cancel anytime, and standard rates apply after that. Everything is transparent at checkout.',
     },
     {
       question: 'Is ELCODERS a freelancer or agency?',
@@ -36,7 +36,7 @@ export function FAQ() {
     },
     {
       question: 'What services does ELCODERS offer?',
-      answer: 'Web Apps, Mobile Apps, AI/ML Solutions, Cybersecurity Services, Full Stack Applications, Azure Cloud Infrastructure, Blockchain Development, UI/UX Design, API Development, Cloud Migration, and DevOps Support.',
+      answer: 'We offer Web Apps, Mobile Apps, AI/ML Solutions, Cybersecurity Services, Full Stack Applications, Azure Cloud Infrastructure, Blockchain Development, UI/UX Design, API Development, Cloud Migration, and DevOps Support.',
     },
     {
       question: 'How do I book a consultation?',

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { createClient } from '@supabase/supabase-js';
 
 // Email transporter configuration
 const transporter = nodemailer.createTransport({
@@ -9,6 +10,12 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASSWORD,
   },
 });
+
+// Supabase client initialization
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+);
 
 interface BookingRequest {
   name: string;
@@ -39,6 +46,30 @@ export async function POST(request: NextRequest) {
         { error: 'Invalid email format' },
         { status: 400 }
       );
+    }
+
+    // Save booking to Supabase
+    const { data, error: dbError } = await supabase
+      .from('bookings')
+      .insert([
+        {
+          name: body.name,
+          email: body.email,
+          phone: body.phone,
+          country_code: body.countryCode,
+          date: body.date,
+          time: body.time,
+          service: body.service,
+          message: body.message,
+          status: 'pending',
+          created_at: new Date().toISOString(),
+        },
+      ])
+      .select();
+
+    if (dbError) {
+      console.error('Supabase error:', dbError);
+      // Continue with email even if DB fails
     }
 
     // Format date and time for display
@@ -179,6 +210,7 @@ export async function POST(request: NextRequest) {
       success: true,
       message: 'Booking created successfully. Confirmation email sent.',
       booking: {
+        id: data?.[0]?.id,
         name: body.name,
         email: body.email,
         date: body.date,
