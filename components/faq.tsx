@@ -7,7 +7,7 @@ export function FAQ() {
 
   const faqs = [
     {
-      question: 'What if I don&apos;t have 1 hour of work every single day?',
+      question: 'What if I don\'t have 1 hour of work every single day?',
       answer: 'Hours roll over! Scout plan rolls over 7 days. Squad plan rolls over 14 days. CTO plan rolls over 30 days. Bank unused hours for bigger sprints whenever you need them.',
     },
     {
@@ -16,10 +16,10 @@ export function FAQ() {
     },
     {
       question: 'How does payment work?',
-      answer: 'We invoice daily at midnight UTC with a card on file. Pause or cancel anytime from your dashboard. No contracts or hidden fees. You&apos;re never locked in.',
+      answer: 'We invoice daily at midnight UTC with a card on file. Pause or cancel anytime from your dashboard. No contracts or hidden fees. You\'re never locked in.',
     },
     {
-      question: 'What&apos;s the catch with the discount?',
+      question: 'What\'s the catch with the discount?',
       answer: 'No catch. We want you to experience daily velocity risk-free. The discount applies to your first week. You can cancel anytime, and standard rates apply after that. Everything is transparent at checkout.',
     },
     {
@@ -40,7 +40,7 @@ export function FAQ() {
     },
     {
       question: 'How do I book a consultation?',
-      answer: 'Scroll to the "Book Your Consultation" section and click the button to connect with us on WhatsApp. We&apos;ll assist you in scheduling your appointment directly on the chat. You can also message us at https://wa.link/x7p0yz.',
+      answer: 'Scroll to the "Book Your Consultation" section and click the button to connect with us on WhatsApp. We\'ll assist you in scheduling your appointment directly on the chat.',
     },
     {
       question: 'What payment methods do you accept?',

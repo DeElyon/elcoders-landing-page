@@ -21,6 +21,7 @@ interface BookingRequest {
   name: string;
   email: string;
   phone: string;
+  countryCode?: string;
   date: string;
   time: string;
   service: string;
@@ -69,7 +70,10 @@ export async function POST(request: NextRequest) {
 
     if (dbError) {
       console.error('Supabase error:', dbError);
-      // Continue with email even if DB fails
+      return NextResponse.json(
+        { error: 'Failed to save booking' },
+        { status: 502 }
+      );
     }
 
     // Format date and time for display

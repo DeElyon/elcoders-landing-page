@@ -103,10 +103,41 @@ export function Booking() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Redirect to WhatsApp
-    window.open('https://wa.link/x7p0yz', '_blank');
+    
+    try {
+      // Submit booking to API
+      const response = await fetch('/api/booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to book appointment');
+      }
+
+      // Reset form
+      setFormData({
+        countryCode: '+234',
+        name: '',
+        email: '',
+        phone: '',
+        date: '',
+        time: '',
+        service: '',
+        message: '',
+      });
+
+      // Redirect to WhatsApp
+      window.open('https://wa.link/x7p0yz', '_blank');
+    } catch (error) {
+      console.error('Booking error:', error);
+      alert(error instanceof Error ? error.message : 'Failed to book appointment');
+    }
   };
 
   const services = [
@@ -133,7 +164,10 @@ export function Booking() {
     if (!isClient) return '';
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    return tomorrow.toISOString().split('T')[0];
+    const year = tomorrow.getFullYear();
+    const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
+    const day = String(tomorrow.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   };
 
   return (
