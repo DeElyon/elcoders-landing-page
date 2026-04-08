@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-export default function PaymentSuccessContent() {
+function PaymentContent() {
   const searchParams = useSearchParams();
   const reference = searchParams.get('reference');
   const [status, setStatus] = useState<string>('loading');
@@ -109,16 +109,18 @@ export default function PaymentSuccessContent() {
           <p className="text-slate-500 text-sm">
             Don&apos;t want to wait? 
           </p>
-          <Link
+          <a
             href="https://wa.link/aps8r5"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg font-semibold hover:opacity-90 transition inline-block"
           >
             Chat with Us on WhatsApp
-          </Link>
+          </a>
         </div>
       </div>
     </div>
   );
 }
+
+export default PaymentContent;
