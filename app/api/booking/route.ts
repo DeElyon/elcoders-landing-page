@@ -11,12 +11,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Supabase client initialization
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
-);
-
 interface BookingRequest {
   name: string;
   email: string;
@@ -48,6 +42,12 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Initialize Supabase client
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+    );
 
     // Save booking to Supabase
     const { data, error: dbError } = await supabase
