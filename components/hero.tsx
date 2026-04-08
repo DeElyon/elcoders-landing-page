@@ -33,12 +33,8 @@ export function Hero() {
           <span className="block bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">Zero Fluff. Daily Velocity.</span>
         </h1>
 
-        <p className="text-lg md:text-xl text-slate-300 mb-4 max-w-2xl mx-auto text-balance">
-          ELCODERS is the development arm of EL VERSE TECHNOLOGIES—your dedicated team for Web Apps, Mobile Apps, AI/ML, Cybersecurity, Full Stack, Azure & Blockchain.
-        </p>
-        
-        <p className="text-base md:text-lg text-slate-400 mb-8 max-w-2xl mx-auto text-balance">
-          Pause anytime. No contracts. No lock-in. Get a senior dev on your team for just $49-149/day.
+        <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl mx-auto text-balance">
+          Dedicated dev team for Web, Mobile, AI/ML & more.
         </p>
 
         <div className="flex flex-col md:flex-row gap-4 justify-center mb-12">
