@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function Booking() {
   const [formData, setFormData] = useState({
@@ -14,8 +14,11 @@ export function Booking() {
     message: '',
   });
 
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Comprehensive country codes list
   const countryCodes = [
@@ -100,42 +103,10 @@ export function Booking() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('loading');
-    setErrorMsg('');
-
-    try {
-      const response = await fetch('/api/booking', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to book appointment');
-      }
-
-      setStatus('success');
-      setFormData({
-        countryCode: '+234',
-        name: '',
-        email: '',
-        phone: '',
-        date: '',
-        time: '',
-        service: '',
-        message: '',
-      });
-
-      // Reset success message after 4 seconds
-      setTimeout(() => setStatus('idle'), 4000);
-    } catch (error) {
-      setStatus('error');
-      setErrorMsg(error instanceof Error ? error.message : 'An error occurred');
-    }
+    // Redirect to WhatsApp
+    window.open('https://wa.link/x7p0yz', '_blank');
   };
 
   const services = [
@@ -157,8 +128,13 @@ export function Booking() {
     '16:00', '16:30', '17:00',
   ];
 
-  // Get minimum date (today)
-  const today = new Date().toISOString().split('T')[0];
+  // Get minimum date (tomorrow) - only calculate on client
+  const getMinDate = () => {
+    if (!isClient) return '';
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().split('T')[0];
+  };
 
   return (
     <section id="booking" className="py-20 bg-gradient-to-b from-slate-950 to-slate-900">
@@ -173,21 +149,7 @@ export function Booking() {
         </div>
 
         <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 md:p-12">
-          {status === 'success' && (
-            <div className="mb-8 p-4 bg-green-900/20 border border-green-500/50 rounded-lg">
-              <p className="text-green-400 text-center">
-                ✓ Appointment booked successfully! Check your email for confirmation.
-              </p>
-            </div>
-          )}
 
-          {status === 'error' && (
-            <div className="mb-8 p-4 bg-red-900/20 border border-red-500/50 rounded-lg">
-              <p className="text-red-400 text-center">
-                ✗ {errorMsg}
-              </p>
-            </div>
-          )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -289,7 +251,7 @@ export function Booking() {
                   value={formData.date}
                   onChange={handleChange}
                   required
-                  min={today}
+                  min={getMinDate()}
                   className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition"
                 />
               </div>
@@ -331,14 +293,13 @@ export function Booking() {
 
             <button
               type="submit"
-              disabled={status === 'loading'}
-              className="w-full px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg font-semibold text-lg hover:shadow-lg hover:shadow-cyan-500/30 hover:scale-105 transition transform disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
+              className="w-full px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg font-semibold text-lg hover:shadow-lg hover:shadow-cyan-500/30 hover:scale-105 transition transform active:scale-95"
             >
-              {status === 'loading' ? 'Booking...' : 'Book Your Appointment'}
+              Book Your Appointment
             </button>
 
             <p className="text-center text-slate-400 text-sm mt-4">
-              We&apos;ll send you a confirmation email with all appointment details
+              Click the button above to chat with us on WhatsApp to book your appointment
             </p>
           </form>
         </div>
