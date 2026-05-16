@@ -11,6 +11,7 @@ function PaymentSuccessContent() {
   const [transactionData, setTransactionData] = useState<any>(null);
 
   useEffect(() => {
+    let timer: NodeJS.Timeout;
     const verifyPayment = async () => {
       if (!reference) {
         setStatus('error');
@@ -19,7 +20,7 @@ function PaymentSuccessContent() {
 
       try {
         const response = await fetch(
-          `/api/korapay/verify?reference=${reference}`
+          `/api/korapay/verify?reference=${encodeURIComponent(reference)}`
         );
         const data = await response.json();
 
@@ -28,7 +29,7 @@ function PaymentSuccessContent() {
           setTransactionData(data.data);
           
           // Auto-redirect to WhatsApp after 3 seconds
-          setTimeout(() => {
+          timer = setTimeout(() => {
             window.location.href = 'https://wa.link/d4oxqj';
           }, 3000);
         } else {
@@ -41,6 +42,9 @@ function PaymentSuccessContent() {
     };
 
     verifyPayment();
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
   }, [reference]);
 
   if (status === 'loading') {

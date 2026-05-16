@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { AnimatedLoader } from './ui/AnimatedLoader';
 
-const WHATSAPP_BUSINESS_NUMBER = "2348123456789"; // Replace with real number
+const WHATSAPP_BUSINESS_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_BUSINESS_NUMBER || "2348123456789";
 
 export function Booking() {
   const [formData, setFormData] = useState({
@@ -166,11 +166,22 @@ Hi ${name}, thanks for booking a consultation!
 — ELCODERS team | we build, you scale.`;
   };
 
-  const handleSendRequest = (e: React.FormEvent) => {
+  const handleSendRequest = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.service || !formData.phone) return;
 
     setStatus('loading');
+
+    try {
+        // Capture lead data on server
+        await fetch('/api/booking', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+        });
+    } catch (error) {
+        console.error('Failed to save booking:', error);
+    }
 
     setTimeout(() => {
       const reply = generateAutoReply(formData.name, formData.service);
@@ -189,7 +200,7 @@ Hi ${name}, thanks for booking a consultation!
     message += `\n(I'd like to confirm this consultation and discuss the estimated pricing/timeline.)`;
 
     const waUrl = `https://wa.me/${WHATSAPP_BUSINESS_NUMBER}?text=${encodeURIComponent(message)}`;
-    window.open(waUrl, "_blank");
+    window.open(waUrl, "_blank", "noopener,noreferrer");
   };
 
   const today = new Date().toISOString().split('T')[0];
