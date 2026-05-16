@@ -14,8 +14,8 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'ELCODERS - Premium Digital Solutions',
-  description: 'Transform your vision into reality with cutting-edge web development, UI/UX design, and AI solutions.',
+  title: 'ELCODERS | Full Tech Service Catalog · EL VERSE ECOSYSTEM',
+  description: 'Development Arm of EL VERSE | 4‑week MVP delivery • 100% code ownership • Flat prices • 12+ MVPs shipped',
   generator: 'v0.app',
   icons: {
     icon: '/favicon.ico',

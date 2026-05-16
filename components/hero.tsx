@@ -29,16 +29,16 @@ export function Hero() {
         </div>
 
         <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white text-balance">
-          Code Shipped in 24 Hours
-          <span className="block bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">Zero Fluff. Daily Velocity.</span>
+          ELCODERS — Complete Tech Services
+          <span className="block bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">Development Arm of EL VERSE</span>
         </h1>
 
         <p className="text-lg md:text-xl text-slate-300 mb-4 max-w-2xl mx-auto text-balance">
-          ELCODERS is the development arm of EL VERSE TECHNOLOGIES—your dedicated team for Web Apps, Mobile Apps, AI/ML, Cybersecurity, Full Stack, Azure & Blockchain.
+          ✅ 4‑week MVP delivery • 100% code ownership • Flat prices • 12+ MVPs shipped (3 funded)
         </p>
         
         <p className="text-base md:text-lg text-slate-400 mb-8 max-w-2xl mx-auto text-balance">
-          Pause anytime. No contracts. No lock-in. Get a senior dev on your team for just $49-149/day.
+          ⚡ <strong>EL VERSE ECOSYSTEM:</strong> EL ACCESS (intern) · ELSPACE (freelance) · ELITES (mentorship) · NEXEL (social app)
         </p>
 
         <div className="flex flex-col md:flex-row gap-4 justify-center mb-12">

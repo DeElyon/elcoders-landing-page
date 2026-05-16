@@ -2,6 +2,7 @@ import { Navbar } from '@/components/navbar';
 import { Hero } from '@/components/hero';
 import { Trust } from '@/components/trust';
 import { Features } from '@/components/features';
+import { ServiceCatalog } from '@/components/ServiceCatalog';
 import { Pricing } from '@/components/pricing';
 import { Timeline } from '@/components/timeline';
 import { Booking } from '@/components/booking';
@@ -26,6 +27,7 @@ export default function Home() {
       <Hero />
       <Trust />
       <Features />
+      <ServiceCatalog />
       <Pricing />
       <Timeline />
       <Booking />

@@ -16,11 +16,16 @@ export function Navbar() {
             alt="ELCODERS Logo" 
             width={40} 
             height={40}
-            className="rounded"
+            className="rounded-full border border-cyan-500/50"
           />
-          <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            ELCODERS
-          </span>
+          <div className="flex flex-col">
+            <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent leading-none">
+              ELCODERS
+            </span>
+            <span className="text-[10px] text-cyan-500 font-bold tracking-tighter uppercase leading-none mt-1">
+              EL VERSE ECOSYSTEM
+            </span>
+          </div>
         </Link>
         
         <div className="hidden md:flex gap-8">
