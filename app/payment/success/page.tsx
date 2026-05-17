@@ -11,7 +11,6 @@ function PaymentSuccessContent() {
   const [transactionData, setTransactionData] = useState<any>(null);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
     const verifyPayment = async () => {
       if (!reference) {
         setStatus('error');
@@ -27,11 +26,6 @@ function PaymentSuccessContent() {
         if (data.success) {
           setStatus('success');
           setTransactionData(data.data);
-          
-          // Auto-redirect to WhatsApp after 3 seconds
-          timer = setTimeout(() => {
-            window.location.href = 'https://wa.link/d4oxqj';
-          }, 3000);
         } else {
           setStatus('error');
         }
@@ -42,10 +36,16 @@ function PaymentSuccessContent() {
     };
 
     verifyPayment();
-    return () => {
-      if (timer) clearTimeout(timer);
-    };
   }, [reference]);
+
+  useEffect(() => {
+    if (status === 'success') {
+      const timer = setTimeout(() => {
+        window.location.href = 'https://wa.link/d4oxqj';
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
 
   if (status === 'loading') {
     return (
